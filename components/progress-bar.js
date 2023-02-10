@@ -1,5 +1,5 @@
 
-import { data } from '../../data/userdata.js'
+import { data } from '../data/userdata.js'
 import React, { useEffect, useState } from 'react'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'

@@ -1,31 +1,21 @@
 // import { data } from "../components/pie";
 
 import dynamic from "next/dynamic";
-import Table from "../components/table";
+// import Table from "../components/table";
 import homeStyles from "../styles/Home.module.css";
 import ProgressBar from "../components/progress-bar";
 import LinearWithValueLabel from "../components/linearprogresswithlabel";
 import Link from "next/link";
+import Todolist from "../components/Todolist";
+import AssignList from "../components/AssignList";
 
 const Dashboard = () => {
-	return (
-		<div className="">
-			<div className="">
-				<div className=" p-6 flex flex-col md:space-y-[2%]">
-					<span>Personal Progress</span>
-					<LinearWithValueLabel type="student" />
-				</div>
-				<div className="p-6 flex flex-col md:space-y-[2%]">
-					<span>Assignment Progress</span>
-					<LinearWithValueLabel type="prof" />
-				</div>
-			</div>
-			<div className="flex">
-				<Table type="student" />
-				<Table type="prof" />
-			</div>
-		</div>
-	);
+  return (
+    <div className="flex w-[100%] ">
+      {/* <Todolist /> */}
+      <AssignList />
+    </div>
+  );
 };
 export default Dashboard;
 

@@ -1,0 +1,172 @@
+import React, { useState } from "react";
+
+const ProfilePage = () => {
+  const student = {
+    name: "John Doe",
+    bio: "I am a student currently pursuing my degree in Computer Science.",
+    education: [
+      { degree: "B.S.", institution: "University of California, Berkeley" },
+      { degree: "M.S.", institution: "Stanford University" },
+    ],
+    experience: [
+      { title: "Software Engineer", company: "Google" },
+      { title: "Data Analyst", company: "Facebook" },
+    ],
+    skills: ["JavaScript", "React", "Node.js", "Python"],
+  };
+  const [newEducation, setNewEducation] = useState({
+    degree: "",
+    institution: "",
+  });
+  const [newExperience, setNewExperience] = useState({
+    title: "",
+    company: "",
+  });
+  const [newSkill, setNewSkill] = useState("");
+
+  const handleEducationChange = (e) => {
+    setNewEducation({
+      ...newEducation,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleExperienceChange = (e) => {
+    setNewExperience({
+      ...newExperience,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSkillChange = (e) => {
+    setNewSkill(e.target.value);
+  };
+
+  const handleAddEducation = () => {
+    student.education.push(newEducation);
+    setNewEducation({ degree: "", institution: "" });
+  };
+
+  const handleAddExperience = () => {
+    student.experience.push(newExperience);
+    setNewExperience({ title: "", company: "" });
+  };
+
+  const handleAddSkill = () => {
+    student.skills.push(newSkill);
+    setNewSkill("");
+  };
+
+  return (
+    <div className="bg-gray-100 p-4 rounded-lg">
+      <div className="text-center">
+        <img
+          src="https://via.placeholder.com/150"
+          alt="Profile"
+          className="w-32 h-32 rounded-full mx-auto mb-4"
+        />
+        <h1 className="text-2xl font-medium">{student.name}</h1>
+        <p className="text-gray-700">{student.bio}</p>
+      </div>
+
+      <div className="my-8">
+        <h2 className="text-lg font-medium">Education</h2>
+        <ul className="list-disc pl-4">
+          {student.education.map((school, index) => (
+            <li key={index} className="text-gray-700">
+              {school.degree} from {school.institution}
+            </li>
+          ))}
+        </ul>
+        <div className="flex my-2">
+          <input
+            type="text"
+            name="degree"
+            placeholder="Degree"
+            value={newEducation.degree}
+            onChange={handleAddEducation}
+            className="border rounded p-2 mr-2 flex-1"
+          />
+          <input
+            type="text"
+            name="institution"
+            placeholder="Institution"
+            value={newEducation.institution}
+            onChange={handleEducationChange}
+            className="border rounded p-2 mr-2 flex-1"
+          />
+          <button
+            onClick={handleAddEducation}
+            className="bg-blue-500 text-white rounded p-2"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+
+      <div className="my-8">
+        <h2 className="text-lg font-medium">Experience</h2>
+        <ul className="list-disc pl-4">
+          {student.experience.map((job, index) => (
+            <li key={index} className="text-gray-700">
+              {job.title} at {job.company}
+            </li>
+          ))}
+        </ul>
+        <div className="flex my-2">
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value={newExperience.title}
+            onChange={handleExperienceChange}
+            className="border rounded p-2 mr-2 flex-1"
+          />
+          <input
+            type="text"
+            name="company"
+            placeholder="Company"
+            value={newExperience.company}
+            onChange={handleExperienceChange}
+            className="border rounded p-2 mr-2 flex-1"
+          />
+          <button
+            onClick={handleAddExperience}
+            className="bg-blue-500 text-white rounded p-2"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+
+      <div className="my-8">
+        <h2 className="text-lg font-medium">Skills</h2>
+        <ul className="list-disc pl-4">
+          {student.skills.map((skill, index) => (
+            <li key={index} className="text-gray-700">
+              {skill}
+            </li>
+          ))}
+        </ul>
+        <div className="flex my-2">
+          <input
+            type="text"
+            name="skill"
+            placeholder="Skill"
+            value={newSkill}
+            onChange={handleSkillChange}
+            className="border rounded p-2 mr-2 flex-1"
+          />
+          <button
+            onClick={handleAddSkill}
+            className="bg-blue-500 text-white rounded p-2"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProfilePage;
